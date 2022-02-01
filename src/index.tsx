@@ -1,23 +1,9 @@
-import * as React from 'react';
+import { $build, $msg, $pres, $iq } from 'strophe.js';
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState<{
-    counter: number;
-  }>({
-    counter: 0
-  });
-
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++;
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
-
-  return counter;
+export { default as useStrophe } from './useStrophe/useStrophe';
+export const stropheBuilder = {
+  build: $build,
+  message: $msg,
+  presence: $pres,
+  iq: $iq,
 };
